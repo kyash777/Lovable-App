@@ -1,0 +1,9 @@
+package com.yash.projects.lovableApp.DTO.subscription;
+
+public record PlanLimitsResponse(
+        String planName,
+        int maxTokensPerDay,
+        int maxProjects,
+        boolean unlimitedAi
+) {
+}
