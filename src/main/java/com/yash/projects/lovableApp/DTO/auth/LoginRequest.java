@@ -1,8 +1,11 @@
 package com.yash.projects.lovableApp.DTO.auth;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 public record LoginRequest(
-        String email,
-        String password
+        @Email @NotBlank String username,
+        @Size(min=4,max=32) String password
 ) {
 }
 
