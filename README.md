@@ -1,24 +1,5 @@
-flowchart LR
+# High Level Architecture
+<img width="3114" height="890" alt="mermaid-diagram" src="https://github.com/user-attachments/assets/ca4d830d-63fd-46d0-82be-93033ac9f039" />
 
-    U[User]
 
-    U --> FE[React Frontend]
-
-    FE --> GW[Spring Cloud Gateway]
-
-    GW --> INT[Intelligence Service]
-    GW --> WS[Workspace Service]
-    GW --> CHAT[Chat Service]
-
-    INT --> LLM[LLM Provider]
-
-    INT --> QD[Qdrant Vector DB]
-    INT --> MINIO[MinIO Object Storage]
-
-    INT --> EXEC[Execution Service]
-
-    EXEC --> K8S[Kubernetes Cluster]
-
-    K8S --> PREVIEW[Preview URL]
-
-    PREVIEW --> U
+  
