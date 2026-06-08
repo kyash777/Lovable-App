@@ -4,6 +4,7 @@ import com.yash.projects.lovableApp.DTO.project.ProjectResponse;
 import com.yash.projects.lovableApp.DTO.project.ProjectSummaryResponse;
 import com.yash.projects.lovableApp.entity.Project;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
 public interface ProjectMapper {
     ProjectResponse toProjectResponse(Project project);
 
+    @Mapping(source = "name", target = "projectName")
     ProjectSummaryResponse toProjectSummaryResponse(Project project);
 
     List<ProjectSummaryResponse> toListOfProjectSummaryResponse(List<Project> projects);

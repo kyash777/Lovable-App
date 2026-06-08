@@ -30,17 +30,23 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             return;
         }
 
-        String jwtToken = requestHeaderToken.split("Bearer ")[1];
+        try {
+            String jwtToken = requestHeaderToken.split("Bearer ")[1];
+            JwtUserPrincipal user = authUtil.verifyAccessToken(jwtToken);
 
-        JwtUserPrincipal user = authUtil.verifyAccessToken(jwtToken);
-
-        if(user != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
-                    user, null, user.authorities()
-            );
-            SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+            if(user != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+                UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
+                        user, null, user.authorities()
+                );
+                SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+                log.info("JWT Token verified successfully for user: {}", user.username());
+            }
+        } catch (Exception e) {
+            log.error("JWT Token verification failed: {}", e.getMessage());
+            SecurityContextHolder.clearContext();
         }
 
         filterChain.doFilter(request, response);
     }
 }
+
