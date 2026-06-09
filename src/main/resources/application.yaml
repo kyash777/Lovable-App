@@ -18,3 +18,10 @@ spring:
               dialect: org.hibernate.dialect.PostgreSQLDialect
 jwt:
   secret-key: as9b7aodlbjfkluosfd789ujeklfnlsduf90b8ha908w74tuqijvlckajdl
+stripe:
+  api:
+    secret: sk_test_51TfyDsCycxLBm9qtxSEARmBGgbraXBR3zqO5Rqm3MDd6UBFJAsfB6NJ8jSDhKvfRIPORa25GIEnF55o1TSW8HNQZ001ylVkPwy
+  webhook:
+    secret: whsec_4b2418cfe1be80df5a2ae12a4032daff92f35757b8e5ac3685a094ef799aa7c7
+client:
+  url: http://localhost:3000

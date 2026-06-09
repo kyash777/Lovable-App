@@ -10,6 +10,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+import org.springframework.web.servlet.HandlerExceptionResolver;
 
 import java.io.IOException;
 
@@ -19,9 +20,11 @@ import java.io.IOException;
 public class JwtAuthFilter extends OncePerRequestFilter {
 
     private final AuthUtil authUtil;
+    private final HandlerExceptionResolver handlerExceptionResolver;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+
         log.info("incoming request: {}", request.getRequestURI());
 
         final String requestHeaderToken = request.getHeader("Authorization");
@@ -42,7 +45,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                 log.info("JWT Token verified successfully for user: {}", user.username());
             }
         } catch (Exception e) {
-            log.error("JWT Token verification failed: {}", e.getMessage());
+            handlerExceptionResolver.resolveException(request, response, null, e);
             SecurityContextHolder.clearContext();
         }
 

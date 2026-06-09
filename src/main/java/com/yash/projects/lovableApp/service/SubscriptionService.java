@@ -7,8 +7,4 @@ import com.yash.projects.lovableApp.DTO.subscription.SubscriptionResponse;
 
 public interface SubscriptionService {
     SubscriptionResponse getCurrentSubscription(Long userId);
-
-    CheckoutResponse createCheckoutSessionUrl(CheckoutRequest request, Long userId);
-
-    PortalResponse openCustomerPortal(Long userId);
 }
