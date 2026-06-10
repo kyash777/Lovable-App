@@ -1,3 +1,6 @@
+# System Architecture
+<img width="3701" height="2265" alt="ai_design_architecture_f32cec04be" src="https://github.com/user-attachments/assets/7f5bf1fd-ffcf-4c53-88b7-467a20ab0782" />
+
 # High Level Architecture
 <img width="3114" height="890" alt="mermaid-diagram" src="https://github.com/user-attachments/assets/ca4d830d-63fd-46d0-82be-93033ac9f039" />
 
