@@ -18,11 +18,11 @@ spring:
               dialect: org.hibernate.dialect.PostgreSQLDialect
   ai:
     openai:
-      api-key:
+      api-key: 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
       base-url: https://openrouter.ai/api
       chat:
         options:
-          model: openai/gpt-5.2-codex
+          model: openai/gpt-oss-120b:free
           temperature: 0.0
 jwt:
   secret-key: as9b7aodlbjfkluosfd789ujeklfnlsduf90b8ha908w74tuqijvlckajdl
@@ -33,3 +33,14 @@ stripe:
     secret: whsec_4b2418cfe1be80df5a2ae12a4032daff92f35757b8e5ac3685a094ef799aa7c7
 client:
   url: http://localhost:3000
+
+minio:
+  url: http://localhost:9002
+  access-key: minioadmin
+  secret-key: minioadmin123
+  project-bucket: lovable-files
+
+logging:
+  level:
+    org.springframework.ai:
+      chat.client: DEBUG
