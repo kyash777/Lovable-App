@@ -17,4 +17,6 @@ public interface SubscriptionService {
     void renewSubscriptionPeriod(String subscriptionId, Instant periodStart, Instant periodEnd);
 
     void markSubscriptionPastDue(String subscriptionId);
+
+    boolean canCreateNewProject();
 }

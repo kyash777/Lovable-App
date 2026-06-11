@@ -11,10 +11,12 @@ import com.yash.projects.lovableApp.entity.ProjectMember;
 import com.yash.projects.lovableApp.entity.ProjectMemberId;
 import com.yash.projects.lovableApp.entity.User;
 import com.yash.projects.lovableApp.enums.ProjectRole;
+import com.yash.projects.lovableApp.errors.BadRequestException;
 import com.yash.projects.lovableApp.errors.ResourceNotFoundException;
 import com.yash.projects.lovableApp.mapper.ProjectMapper;
 import com.yash.projects.lovableApp.security.AuthUtil;
 import com.yash.projects.lovableApp.service.ProjectService;
+import com.yash.projects.lovableApp.service.SubscriptionService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -33,9 +35,15 @@ public class ProjectServiceImpl implements ProjectService {
     private final ProjectMapper projectMapper;
     private final ProjectMemberRepository projectMemberRepository;
     private final AuthUtil authUtil;
+    private final SubscriptionService subscriptionService;
 
     @Override
     public ProjectResponse createProject(ProjectRequest request) {
+
+        if(!subscriptionService.canCreateNewProject()){
+            throw new BadRequestException("Project creation limit reached. Please upgrade your subscription.");
+
+        }
         Long userId = authUtil.getCurrentUserId();
 
         User owner = userRepository.getReferenceById(userId);
